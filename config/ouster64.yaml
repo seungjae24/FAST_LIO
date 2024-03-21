@@ -7,11 +7,11 @@
         filter_size_map: 0.5
         cube_side_length: 1000.0
         runtime_pos_log_enable: false
-        map_file_path: "./test.pcd"
+        map_file_path: "/root/fast_lio_ws/src/FAST_LIO/maps/KAIST_north_map_optimized_0822.pcd"
 
         common:
-            lid_topic:  "/os_cloud_node/points"
-            imu_topic:  "/os_cloud_node/imu"
+            lid_topic:  "/ouster/points"
+            imu_topic:  "/go1_mti30/imu/data"
             time_sync_en: false         # ONLY turn on when external time synchronization is really not possible
             time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
                                         # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
