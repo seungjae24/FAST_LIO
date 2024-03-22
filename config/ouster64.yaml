@@ -7,7 +7,7 @@
         filter_size_map: 0.5
         cube_side_length: 1000.0
         runtime_pos_log_enable: false
-        map_file_path: "/root/fast_lio_ws/src/FAST_LIO/maps/KAIST_north_map_optimized_0822.pcd"
+        map_file_path: "/root/maps/KAIST_north_map_optimized_0822.pcd"
 
         common:
             lid_topic:  "/ouster/points"
