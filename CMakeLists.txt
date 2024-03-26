@@ -82,11 +82,20 @@ set(dependencies
 find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common io)
 
+# pmc (Parallel Maximum Clique)
+include(thirdparty/find_dependencies.cmake)
+
 message(Eigen: ${EIGEN3_INCLUDE_DIR})
 message(STATUS "PCL: ${PCL_INCLUDE_DIRS}")
 
 set(msg_files
   "msg/Pose6D.msg"
+)
+
+set(teaser_src
+  src/graph.cc
+  src/teaser_utils/feature_matcher.cc
+  src/teaser_utils/fpfh.cc
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -104,16 +113,17 @@ target_link_libraries(fastlio_mapping ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} Eigen
 target_include_directories(fastlio_mapping PRIVATE ${PYTHON_INCLUDE_DIRS})
 
 add_executable(fastlio_localization
-  src/localization.cpp
+  node/localization_node.cpp
   include/ikd-Tree/ikd_Tree.cpp
   src/preprocess.cpp
+  ${teaser_src}
 )
 target_include_directories(fastlio_localization PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
   ${PCL_INCLUDE_DIRS}
 )
-target_link_libraries(fastlio_localization ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} Eigen3::Eigen)
+target_link_libraries(fastlio_localization ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} Eigen3::Eigen pmc::pmc)
 target_include_directories(fastlio_localization PRIVATE ${PYTHON_INCLUDE_DIRS})
 
 list(APPEND EOL_LIST "foxy" "galactic" "eloquent" "dashing" "crystal")

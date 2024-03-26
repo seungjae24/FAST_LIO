@@ -44,7 +44,6 @@
 #include <so3_math.h>
 #include <rclcpp/rclcpp.hpp>
 #include <Eigen/Core>
-#include "IMU_Processing.hpp"
 #include <nav_msgs/msg/odometry.hpp>
 #include <nav_msgs/msg/path.hpp>
 #include <visualization_msgs/msg/marker.hpp>
@@ -60,8 +59,10 @@
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
 #include <livox_ros_driver2/msg/custom_msg.hpp>
-#include "preprocess.h"
 #include <ikd-Tree/ikd_Tree.h>
+
+#include "IMU_Processing.hpp"
+#include "preprocess.h"
 
 #define INIT_TIME           (0.1)
 #define LASER_POINT_COV     (0.001)
